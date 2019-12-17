@@ -9,9 +9,12 @@ build:
   tags:
   - short-jobs
   script:
+  - CD client
   - sh /prepare.sh
   - npm install
+  - CI=false 
   - npm run build
+  - CI=true 
   artifacts:
     name: build-ui
     paths:
