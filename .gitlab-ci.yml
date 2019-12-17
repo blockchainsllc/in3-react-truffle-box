@@ -9,7 +9,7 @@ build:
   tags:
   - short-jobs
   script:
-  - CD client
+  - cd client
   - sh /prepare.sh
   - npm install
   - CI=false 
