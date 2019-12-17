@@ -7,7 +7,7 @@
     "react-dom": "16.11.0",
     "react-scripts": "3.2.0",
     "web3": "1.2.2",
-    "in3": "^2.0.4-RC1"
+    "in3": "^2.0.9-RC3"
   },
   "scripts": {
     "start": "react-scripts start",
