@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
 import InterceptAndLog from "./InterceptAndLog";
 
 import "./App.css";
-import JsonRpcFunctionShow from "./JsonRpcFunctionShow.js";
 import BehindTheScenes from "./BehindTheScenes.js";
 
 class App extends Component {
@@ -28,9 +26,7 @@ class App extends Component {
       this.setState({ web3 }, this.runExample);
     } catch (error) {
       // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
+      alert(`Failed to load web3, accounts, or contract. Check console for details.`);
       console.error(error);
     }
   };
@@ -44,7 +40,7 @@ class App extends Component {
 
     window.JsonRpcLogs[this.functionName] = [];
     try {
-      //getting Transaction
+      // getting a Transaction Receipt by Transaction Hash
       web3.eth.getTransactionReceipt(this.state.transactionHash).then(
         (transactionReceipt) => {
           console.log('Transaction Receipt for the Transaction Receipt for ' + this.state.transactionHash + ':');
@@ -70,70 +66,72 @@ class App extends Component {
     return (
 
       <div className="App">
-        <h1>Good to Go with BlockChain and IoT!</h1>
-        {/* <p>Your Truffle Box is installed and ready.</p> */}
-        <h2>Examples of using Web3 that uses In3 as a provider</h2>
-        <p>
-          If your app is working properly, your Web3 will not use MetaMask nor Ganache as a provider. It will use In3 Client that connects to an In3 Server. And it will get and validate proofs for any validatable remote call.
+        <div className="text-center">
+          <div><h2>Good to Go with </h2>
+            <h1>  BlockChain for IoT and any other!
+          </h1>
+          </div>
+          <h2>Using Web3 with In3 (Incubed Client) as a provider</h2>
+          <p>
+            In this sample, your Web3 does not use MetaMask nor any untrusted node as a provider.
+            <br />
+            It uses In3 Client that connects to an In3 Server. And it will get and validate proofs for any validatable remote call.
         </p>
-
+        </div>
         <hr divor='blue' />
 
-        <div>{this.state.transactionReceipt ?
-              typeof this.state.transactionReceipt !== "string" ?
-                <div className="shadow border-0 bg-primary my-3">
-                  <div className="py-5">
-                    <div className="display-4 text-white">The Data of the inquired Transaction Receipt</div>
+        <div className="div-center" >{this.state.transactionReceipt ?
+          typeof this.state.transactionReceipt !== "string" ?
+            <div>
+              <div>
+                <h4>The Data of the inquired Transaction Receipt</h4>
+                <div>
+                  <div>
                     <div>
-                      <div>
-                        <div>
-                          <span className="font-weight-bold">Transaction Hash : </span>{this.state.transactionReceipt.transactionHash}
+                      <span>Transaction Hash : </span>{this.state.transactionReceipt.transactionHash}
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <span>From: </span><br />{this.state.transactionReceipt.from}
+                    </div>
+                    <div>
+                      <span>To: </span><br />{this.state.transactionReceipt.to}
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <span>Gas Used: </span>{this.state.transactionReceipt.gasUsed} Wei
                         </div>
-                      </div>
-                      <div>
-                        <div>
-                          <span className="font-weight-bold">From: </span><br />{this.state.transactionReceipt.from}
-                        </div>
-                        <div>
-                          <span className="font-weight-bold">To: </span><br />{this.state.transactionReceipt.to}
-                        </div>
-                      </div>
-                      <div>
-                        <div>
-                          <span className="font-weight-bold">Gas Used: </span>{this.state.transactionReceipt.gasUsed} Wei
-                        </div>
-                        <div>
-                          <span className="font-weight-bold">Block Number: </span>{this.state.transactionReceipt.blockNumber}
-                        </div>
-                      </div>
-                      <div>
-                        <div></div>
-                      </div>
-                      <div>
-                        <div>
-                          <span className="font-weight-bold">Logs: </span>{this.state.transactionReceipt.logs
-                            ? 'Number of emitted events in the inquired transaction: ' + this.state.transactionReceipt.logs.length
-                            : 'No events emitted in the transaction'}
-                        </div>
-                      </div>
+                    <div>
+                      <span>Block Number: </span>{this.state.transactionReceipt.blockNumber}
+                    </div>
+                  </div>
+                  <div>
+                    <div></div>
+                  </div>
+                  <div>
+                    <div>
+                      <span className="font-weight-bold">Logs: </span>{this.state.transactionReceipt.logs
+                        ? 'Number of emitted events in the inquired transaction: ' + this.state.transactionReceipt.logs.length
+                        : 'No events emitted in the transaction'}
                     </div>
                   </div>
                 </div>
-                :
-                <div>
-                  <div divor="blue">
-                    <span className="alert-inner--icon">
-                      <i className="fa fa-code fa-lg" />
-                    </span>
-                    <span className="alert-inner--text ml-1 display-5">
-                      {this.state.transactionReceipt}
-                    </span>
-                  </div>
-                </div>
-              :
-              <></>
-            }
+              </div>
             </div>
+            :
+            <div>
+              <div>
+                <span>
+                  {this.state.transactionReceipt}
+                </span>
+              </div>
+            </div>
+          :
+          <></>
+        }
+        </div>
         <hr divor='blue' />
         <BehindTheScenes />
       </div>

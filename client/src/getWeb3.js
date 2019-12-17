@@ -5,7 +5,8 @@ const getWeb3 = (withVerification) =>
 
   new Promise((resolve, reject) => {
 
-    // If withVerification In3 client will be used as a provider for Web3.
+    // If withVerification is true, In3 (Incubed Client) will be used as a provider for Web3.
+    // In3 insures turested communication between the client and the node.
     if (withVerification) {
       try {
         // use the In3Client as Http-Provider

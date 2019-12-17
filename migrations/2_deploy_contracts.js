@@ -4,6 +4,9 @@
 // var SmartContractArtifacts = artifacts.require("./SmartContractCode.sol");
 
 module.exports = function(deployer) {
-  console.log("Nothing to deploy in this sample. The purpose of this sample is to show how to get trusted information, from Ethereum network, without the need to run an Ethereum Client.");
+  console.log("Nothing to deploy in this sample. The purpose of this sample is to show how to get trusted information, from Ethereum network, without the need to run a full Ethereum Node.");
+
+  console.log("Feel free to add and deploy your contracts if needed.");
+  
   // deployer.deploy(SmartContractArtifacts);
 };
