@@ -82,50 +82,52 @@ class App extends Component {
 
         <div className="div-center" >{this.state.transactionReceipt ?
           typeof this.state.transactionReceipt !== "string" ?
-            <div>
+            <div className="div-data">
+              <h4>The Data of the inquired Transaction Receipt</h4>
               <div>
-                <h4>The Data of the inquired Transaction Receipt</h4>
                 <div>
                   <div>
-                    <div>
-                      <span>Transaction Hash : </span>{this.state.transactionReceipt.transactionHash}
-                    </div>
+                    <span>Transaction Hash : </span>{this.state.transactionReceipt.transactionHash}
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <span>From: </span><br />{this.state.transactionReceipt.from}
                   </div>
                   <div>
-                    <div>
-                      <span>From: </span><br />{this.state.transactionReceipt.from}
-                    </div>
-                    <div>
-                      <span>To: </span><br />{this.state.transactionReceipt.to}
-                    </div>
+                    <span>To: </span><br />{this.state.transactionReceipt.to}
                   </div>
+                </div>
+                <div>
                   <div>
-                    <div>
-                      <span>Gas Used: </span>{this.state.transactionReceipt.gasUsed} Wei
+                    <span>Gas Used: </span>{this.state.transactionReceipt.gasUsed} Wei
                         </div>
-                    <div>
-                      <span>Block Number: </span>{this.state.transactionReceipt.blockNumber}
-                    </div>
-                  </div>
                   <div>
-                    <div></div>
+                    <span>Block Number: </span>{this.state.transactionReceipt.blockNumber}
                   </div>
+                </div>
+                <div>
+                  <div></div>
+                </div>
+                <div>
                   <div>
-                    <div>
-                      <span className="font-weight-bold">Logs: </span>{this.state.transactionReceipt.logs
-                        ? 'Number of emitted events in the inquired transaction: ' + this.state.transactionReceipt.logs.length
-                        : 'No events emitted in the transaction'}
-                    </div>
+                    <span className="font-weight-bold">Logs: </span>{this.state.transactionReceipt.logs
+                      ? 'Number of emitted events in the inquired transaction: ' + this.state.transactionReceipt.logs.length
+                      : 'No events emitted in the transaction'}
                   </div>
                 </div>
               </div>
             </div>
             :
             <div>
-              <div>
-                <span>
+              <div className="loading">
+                <div>
                   {this.state.transactionReceipt}
-                </span>
+                </div>
+                <br />
+                <div>
+                  Note: If this took a long time, check the Browser Development Console (F12) or refresh the page!
+                </div>
               </div>
             </div>
           :
