@@ -24,6 +24,8 @@ docker-package:
   stage: package
   tags:
   - short-jobs
+  dependencies:
+    - build
   image: docker
   services:
   - docker:dind
