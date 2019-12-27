@@ -17,7 +17,7 @@ build:
   - CI=true 
   artifacts:
     paths:
-    - build/
+    - client/build/
 
 docker-package:
   stage: package
