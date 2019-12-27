@@ -14,7 +14,8 @@ build:
   - npm install
   - CI=false 
   - npm run build
-  - CI=true 
+  - CI=true
+  - ls
   artifacts:
     paths:
     - client/build/
