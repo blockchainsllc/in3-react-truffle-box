@@ -7,9 +7,9 @@ class BehindTheScenes extends React.Component {
       <div>
         <div className="div-center">
           <div>
-            <h4>
+            <h3>
               What Happens Behind the Scenes!
-                      </h4>
+            </h3>
             <p>
               This occurs for every request from the Ethereum network. You can check the captured request and response above to understand more.
                         {/* It could do so as it is the provider of the Web3 object. */}

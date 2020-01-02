@@ -73,14 +73,39 @@ class App extends Component {
           </div>
           <h2>Using Web3 with In3 (Incubed Client) as a provider</h2>
           <p>
-            In this sample, your Web3 does not use MetaMask nor any untrusted node as a provider.
+            In this sample, your Web3 object does not connect to any trusted or untrusted server.
             <br />
-            It uses In3 Client that connects to an In3 Server. And it will get and validate proofs for any validatable remote call.
+            It does not use MetaMask nor any trusted/untrusted http provider.
+            <br />
+            It uses In3 Client that connects to a trustless In3 Server. And it will get and validate proofs for any validatable remote call.
         </p>
         </div>
         <hr divor='blue' />
 
-        <div className="div-center" >{this.state.transactionReceipt ?
+        <div className="div-center" >
+          <h3>Sample Code</h3>
+          <pre>              
+            {'// use the In3Client as Http-Provide'}<br />
+            {'const web3 = new Web3(new In3Client({'}<br />
+            {'  proof: \'standard\',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payloaad'}<br />
+            {'  signatureCount: 2,'}<br />
+            {'  requestCount: 1, // The number of Incubed Servers to inquire the data from. (you can change to 2 or more depending on your requirements)'}<br />
+            {'  chainId: \'mainnet\','}<br />
+            {'  timeout: 30000,'}<br />
+            {'  replaceLatestBlock: 6'}<br />
+            {'}).createWeb3Provider());'}<br />
+            {''}<br />
+            {'web3.eth.getTransactionReceipt(\'0xb68a3b5ea9b7b39314b5da7f3983e21ec1df4ef2daeca34a9178612ee26c690f\').then('}<br />
+            {'  (transactionReceipt) => {'}<br />
+            {'    console.log(transactionReceipt);'}<br />
+            {'  }, (error) => {'}<br />
+            {'    console.log(error);'}<br />
+            {'});'}<br />
+          </pre>
+        </div>
+        <hr divor='blue' />
+        <div className="div-center" >
+          <h3>Code Result</h3>{this.state.transactionReceipt ?
           typeof this.state.transactionReceipt !== "string" ?
             <div className="div-data">
               <h4>The Data of the inquired Transaction Receipt</h4>
@@ -92,10 +117,10 @@ class App extends Component {
                 </div>
                 <div>
                   <div>
-                    <span>From: </span><br />{this.state.transactionReceipt.from}
+                    <span>From: </span>{this.state.transactionReceipt.from}
                   </div>
                   <div>
-                    <span>To: </span><br />{this.state.transactionReceipt.to}
+                    <span>To: </span>{this.state.transactionReceipt.to}
                   </div>
                 </div>
                 <div>
