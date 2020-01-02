@@ -7,7 +7,7 @@ class InterceptAndLog {
     }
 
     interceptingAllHttpCalls = () => {
-        XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.send;
+        XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.realSend || XMLHttpRequest.prototype.send;
         XMLHttpRequest.prototype.send = function (request) {
             this.addEventListener("load", function () { // Note: this.addEventListener("progress",... is the same but "progress" willl have a truncated response, if it is large!
                 if (!request)
