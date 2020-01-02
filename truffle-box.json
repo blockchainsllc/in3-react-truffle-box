@@ -1,5 +1,5 @@
 {
-  "ignore": ["README.md", ".gitignore", "box-img-lg.png", "box-img-sm.png", ".github", ".gitlab-ci.yml", "Dockerfile", "nginx/nginx.conf"],
+  "ignore": ["README.md", ".gitignore", "box-img-lg.png", "box-img-sm.png", ".github", ".gitlab-ci.yml"],
   "commands": {
     "Compile": "truffle compile",
     "Migrate": "truffle migrate",
