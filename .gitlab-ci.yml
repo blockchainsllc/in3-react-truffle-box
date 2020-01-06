@@ -2,6 +2,7 @@ image: docker.slock.it/build-images/node:10-alpine
 stages:
 - build
 - package
+- deploy
 
 # Job templates
 build:
@@ -15,7 +16,6 @@ build:
   - CI=false 
   - npm run build
   - CI=true
-  - ls
   artifacts:
     paths:
     - client/build/
@@ -30,9 +30,31 @@ docker-package:
   services:
   - docker:dind
   script:
-  - ls
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
   - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME $CI_REGISTRY_IMAGE:latest
   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   - docker push $CI_REGISTRY_IMAGE:latest
+
+# Deployment template
+.deploy-tmpl:
+  stage: deploy
+  tags:
+    - short-jobs
+  only:
+    - /^v[0-9]+.[0-9]+.[0-9]?$/
+  except:
+    - branches
+  when: manual
+  allow_failure: false
+  image: docker.slock.it/build-images/deployment
+  services:
+    - docker:dind
+  script:
+    - cd deployment
+    - rancher -w up -f docker-compose.yml -d --prune -p -s in3-react-truffle-box -c --force-upgrade
+
+# Production deployments
+deploy-to-rancher:
+  extends:
+    - .deploy-tmpl
