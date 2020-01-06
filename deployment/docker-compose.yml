@@ -1,11 +1,8 @@
 version: '2'
 services:
   nd-1:
-    #    image: coinapi:0.1.2
     image: docker.slock.it/maltabba/in3-react-truffle-box:${CI_COMMIT_REF_NAME}
     stdin_open: true
     tty: true
     ports:
       - "8002:80"
-    env_file:
-      - local.env
