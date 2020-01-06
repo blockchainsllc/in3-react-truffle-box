@@ -61,23 +61,24 @@ class App extends Component {
   render() {
 
     if (!this.state.web3) {
-      return <div>Loading Web3 with In3 as a Provider</div>;
+      return <div>Loading Web3 with IN3 as a Provider</div>;
     }
     return (
 
       <div className="App">
         <div className="text-center">
-          <div><h2>Good to Go with </h2>
-            <h1>  BlockChain for IoT and any other!
+          <div>
+            <h2>Good to Go with </h2>
+            <h1>Blockchain for IoT and any other!
           </h1>
           </div>
-          <h2>Using Web3 with In3 (Incubed Client) as a provider</h2>
+          <h2>Using Web3 with IN3 (Incubed Client) as a provider</h2>
           <p>
             In this sample, your Web3 object does not connect to any trusted or untrusted server.
             <br />
             It does not use MetaMask nor any trusted/untrusted http provider.
             <br />
-            It uses In3 Client that connects to a trustless In3 Server. And it will get and validate proofs for any validatable remote call.
+            It uses Incubed Client that connects to <i><b>trustless</b></i> Incubed Server(s). And it gets and validates proofs for any validatable remote call.
         </p>
         </div>
         <hr divor='blue' />
@@ -87,7 +88,7 @@ class App extends Component {
           <pre>              
             {'// use the In3Client as Http-Provide'}<br />
             {'const web3 = new Web3(new In3Client({'}<br />
-            {'  proof: \'standard\',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payloaad'}<br />
+            {'  proof: \'standard\',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ verifying all fields even if this means a high payload'}<br />
             {'  signatureCount: 2,'}<br />
             {'  requestCount: 1, // The number of Incubed Servers to inquire the data from. (you can change to 2 or more depending on your requirements)'}<br />
             {'  chainId: \'mainnet\','}<br />

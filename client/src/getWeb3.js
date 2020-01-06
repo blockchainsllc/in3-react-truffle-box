@@ -5,13 +5,13 @@ const getWeb3 = (withVerification) =>
 
   new Promise((resolve, reject) => {
 
-    // If withVerification is true, In3 (Incubed Client) will be used as a provider for Web3.
-    // In3 insures turested communication between the client and the node.
+    // If withVerification is true, IN3 (Incubed Client) will be used as a provider for Web3.
+    // IN3 insures turested communication between the client and the node.
     if (withVerification) {
       try {
         // use the In3Client as Http-Provider
         const web3 = new Web3(new In3Client({
-          proof: 'standard',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payloaad 
+          proof: 'standard',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payload 
           signatureCount: 2,
           requestCount: 1, // The number of Incubed Servers to inquire the data from. (you can change to 2 or more depending on your requirements)
           chainId: 'mainnet',
@@ -19,14 +19,14 @@ const getWeb3 = (withVerification) =>
           replaceLatestBlock: 6
         }).createWeb3Provider());
 
-        console.log("Web3 with In3 (Incubed will be used as a provider for Web3)");
+        console.log("Web3 with IN3 (Incubed will be used as a provider for Web3)");
         resolve(web3);
       } catch (error) {
         reject(error);
       }
     }
     else {
-      console.log("Web3 without In3 client will be used. There is no way to verify the respose of the remote node (ethereum client).");
+      console.log("Web3 without IN3 client will be used. There is no way to verify the respose of the remote node (ethereum client).");
       // Wait for loading completion to avoid race conditions with web3 injection timing.
       window.addEventListener("load", async () => {
         // Modern dapp browsers...

@@ -7,7 +7,7 @@ describe('Web3 using IN3 as a provider', async () => {
   before(async () => {
     // use the In3Client as Http-Provider
     web3 = new Web3(new In3Client.default({
-      proof: 'standard',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payloaad 
+      proof: 'standard',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payload 
       signatureCount: 2,
       requestCount: 1, // The number of Incubed Servers to inquire the data from. (you can change to 2 or more depending on your requirements)
       chainId: 'mainnet',
