@@ -7,7 +7,7 @@ class InterceptAndLog {
     }
 
     interceptingAllHttpCalls = () => {
-        XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.send;
+        XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.realSend || XMLHttpRequest.prototype.send;
         XMLHttpRequest.prototype.send = function (request) {
             this.addEventListener("load", function () { // Note: this.addEventListener("progress",... is the same but "progress" willl have a truncated response, if it is large!
                 if (!request)
@@ -19,14 +19,14 @@ class InterceptAndLog {
                     else
                         return;
                 if (requestObject.jsonrpc !== undefined && requestObject.in3 === undefined) {
-                    console.log('In3 is not used as a provider for Web3. The method "' + requestObject.method + '" will be called without verification!');
+                    console.log('IN3 is not used as a provider for Web3. The method "' + requestObject.method + '" will be called without verification!');
                     return;
                 }
 
-                // If In3 is used, the object `requestObject` has a value similar to the following (note the "in3"):
+                // If Inclubed Client is used, the object `requestObject` has a value similar to the following (note the "in3" property):
                 // [{"jsonrpc":"2.0","id":3,"method":"eth_getBlockByNumber","params":["latest",false],"in3":{"latestBlock":6,"verification":"proofWithSignature","signatures":["0x945F75c0408C0026a3CD204d36f5e47745182fd4","0x1Fe2E9bf29aa1938859Af64C413361227d04059a"],"version":"2.0.0"}}]
 
-                // The `truncateAndFixLargJson` is used because this.response could be very large. This is because in3 section could be more than 100KB.
+                // The `truncateAndFixLargJson` is used because this.response could be very large. This is because in3 property could be more than 100KB.
                 let { response, responseObject } = InterceptAndLog.truncateAndFixLargJson(this.response, 1000000);
 
 

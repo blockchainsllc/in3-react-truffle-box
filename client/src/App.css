@@ -26,3 +26,12 @@
   margin: auto;
   width: 50%;
 }
+
+.loading{
+  color: #82ad2a;
+  font-weight: bold;
+}
+
+.div-data{
+  color: blue;
+}
