@@ -8,23 +8,37 @@ First ensure you are in a new and empty directory.
 
 1. Run the `unbox` command via `npx` and skip to step 3. This will install all necessary dependencies. A Create-React-App is generated in the `client` directory.
    ```js
-   npx truffle unbox in3-react-truffle-box
+   npx truffle unbox in3-react
    ```
 
 2. Alternatively, you can install Truffle globally and run the `unbox` command.
     ```javascript
     npm install -g truffle
-    truffle unbox in3-react-truffle-box
+    truffle unbox in3-react
     ```
 
-3. In the `client` directory, we run the React app.
+3. For simplification, this truffle box initially does not have any Smart Contract. Because, in most cases, an IoT device will just read something from the Blockchain.
+    So you can skip this step and the one after and go directly to step 5, except if you added later some Smart Contracts to your project.
+    
+    Run the development console.
+    ```javascript
+    truffle develop
+    ```
+
+4. Compile and migrate the smart contracts. Note inside the development console we don't preface commands with `truffle`.
+    ```javascript
+    compile
+    migrate
+    ```
+
+5. In the `client` directory, we run the React app.
     ```javascript
     // in another terminal (i.e. not in the truffle develop prompt)
     cd client
     npm run start
     ```
 
-4. Truffle can run tests written in Solidity or JavaScript against your smart contracts. Note the command varies slightly if you're in or outside of the development console.
+6. Truffle can run tests written in Solidity or JavaScript against your smart contracts. Note the command varies slightly if you're in or outside of the development console.
     ```javascript
     // inside the development console.
     test
@@ -33,13 +47,14 @@ First ensure you are in a new and empty directory.
     truffle test
     ```
 
-5. Just is included for testing React components.
+7. Jest is included for testing React components. 
     ```javascript
     // ensure you are inside the client directory when running this
+    // If you added some contracts, compile them before running Jest, or you may receive some file not found errors.
     npm run test
     ```
 
-6. To build the application for production, use the build script. A production build will be in the `client/build` folder.
+8. To build the application for production, use the build script. A production build will be in the `client/build` folder.
     ```javascript
     // ensure you are inside the client directory when running this
     npm run build
@@ -57,4 +72,4 @@ First ensure you are in a new and empty directory.
 
 * __Where can I find more documentation?__
 
-    This box is a marriage of [Truffle](http://truffleframework.com/), Incubed Client (IN3) from [slock.it](https://slock.it/) and a React setup created with [create-react-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md). Either one would be a great place to start!
+    This box is a marriage of [Truffle](http://truffleframework.com/), Incubed Client [IN3](https://github.com/slockit/in3) and a React setup created with [create-react-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md). Either one would be a great place to start!
