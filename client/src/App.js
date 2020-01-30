@@ -36,7 +36,11 @@ class App extends Component {
     this.setState({ transactionReceipt: 'Calling `web3.eth.getTransactionReceipt(\'' + this.state.transactionHash + '\');` ...' });
 
     try {
-      // getting a Transaction Receipt by Transaction Hash
+      // Getting a Transaction Receipt by Transaction Hash.
+      // This function is called excatly as any web3 function. 
+      //  The only difference here is that the Web3 instance is internally uses IN3 as a provider. 
+      //  So you can still call all the functions of Web3 exaclty as usual without any change. 
+      //  All the magic is happening for you behind the scenes.
       web3.eth.getTransactionReceipt(this.state.transactionHash).then(
         (transactionReceipt) => {
           console.log('Transaction Receipt for the Transaction Receipt for ' + this.state.transactionHash + ':');
@@ -82,16 +86,21 @@ class App extends Component {
         <div className="div-center" >
           <h3>Sample Code</h3>
           <pre>              
-            {'// use the In3Client as Http-Provide'}<br />
+            {'// Use the In3Client as Http-Provide.'}<br />
             {'const web3 = new Web3(new In3Client({'}<br />
-            {'  proof: \'standard\',  //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ verifying all fields even if this means a high payload'}<br />
-            {'  signatureCount: 2,'}<br />
-            {'  requestCount: 1, // The number of Incubed Servers to inquire the data from. (you can change to 2 or more depending on your requirements)'}<br />
-            {'  chainId: \'mainnet\','}<br />
-            {'  timeout: 30000,'}<br />
-            {'  replaceLatestBlock: 6'}<br />
+            {'  proof: \'standard\',      //‘none’ for no verification, ‘standard’ for verifying all important fields, ‘full’ veryfying all fields even if this means a high payload.'}<br />
+            {'  signatureCount: 2,      // The number of the other Incubed Servers that the picked Incubed Server will ask for their additional signature of the blockhash.'}<br />
+            {'  requestCount: 1,        // The number of Incubed Servers to inquire the data from. (you can change to 2 or more depending on your requirements)'}<br />
+            {'  chainId: \'mainnet\',     // Servers to filter for the given chain. The chain-id based on EIP-155.'}<br />
+            {'  timeout: 30000,         // Specifies the number of milliseconds before the request times out. So, increasing may be helpful if the device uses a slow connection.'}<br />
+            {'  replaceLatestBlock: 6   // When specified, the blocknumber `latest` will be replaced by `blockNumber - replaceLatestBlock`.'}<br />
             {'}).createWeb3Provider());'}<br />
             {''}<br />
+            {'// Getting a Transaction Receipt by Transaction Hash.'}<br />
+            {'// This function is called excatly as any web3 function.'}<br />
+            {'//  The only difference here is that the Web3 instance is internally uses IN3 as a provider.'}<br />
+            {'//  So you can still call all the functions of Web3 exaclty as usual without any change.'}<br />
+            {'//  All the magic is happening for you behind the scenes.'}<br />
             {'web3.eth.getTransactionReceipt(\'0xb68a3b5ea9b7b39314b5da7f3983e21ec1df4ef2daeca34a9178612ee26c690f\').then('}<br />
             {'  (transactionReceipt) => {'}<br />
             {'    console.log(transactionReceipt);'}<br />
@@ -123,7 +132,7 @@ class App extends Component {
                 <div>
                   <div>
                     <span>Gas Used: </span>{this.state.transactionReceipt.gasUsed} Wei
-                        </div>
+                  </div>
                   <div>
                     <span>Block Number: </span>{this.state.transactionReceipt.blockNumber}
                   </div>
