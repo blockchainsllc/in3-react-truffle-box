@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import getWeb3 from "./getWeb3";
-import InterceptAndLog from "./InterceptAndLog";
 
 import "./App.css";
 import BehindTheScenes from "./BehindTheScenes.js";
@@ -15,8 +14,6 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-
-    new InterceptAndLog().interceptingAllHttpCalls();
 
     try {
       // Get network provider and web3 instance.
@@ -38,7 +35,6 @@ class App extends Component {
 
     this.setState({ transactionReceipt: 'Calling `web3.eth.getTransactionReceipt(\'' + this.state.transactionHash + '\');` ...' });
 
-    window.JsonRpcLogs[this.functionName] = [];
     try {
       // getting a Transaction Receipt by Transaction Hash
       web3.eth.getTransactionReceipt(this.state.transactionHash).then(
