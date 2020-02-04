@@ -17,7 +17,7 @@ const getWeb3 = (withVerification) =>
           chainId: 'mainnet',     // Servers to filter for the given chain. The chain-id based on EIP-155.
           timeout: 30000,         // Specifies the number of milliseconds before the request times out. So, increasing may be helpful if the device uses a slow connection.
           replaceLatestBlock: 10  // When specified, the blocknumber `latest` will be replaced by `blockNumber - replaceLatestBlock`.
-        }).createWeb3Provider());
+        }));
 
         console.log("Web3 with IN3 (Incubed will be used as a provider for Web3)");
         resolve(web3);
