@@ -2,7 +2,7 @@ image: docker.slock.it/build-images/node:10-alpine
 stages:
 - build
 - package
-- analyse
+- analysis
 - deploy
 
 # Job templates
